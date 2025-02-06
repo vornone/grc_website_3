@@ -38,14 +38,7 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const dataDirectory = path_1.default.join(__dirname, "seedData");
         const orderedFileNames = [
-            "team.json",
-            "project.json",
-            "projectTeam.json",
             "user.json",
-            "task.json",
-            "attachment.json",
-            "comment.json",
-            "taskAssignment.json",
         ];
         yield deleteAllData(orderedFileNames);
         for (const fileName of orderedFileNames) {
