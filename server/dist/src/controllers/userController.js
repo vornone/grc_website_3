@@ -15,7 +15,7 @@ const prisma = new client_1.PrismaClient();
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield prisma.user.findMany({
-            orderBy: { username: "asc" },
+            orderBy: { user_id: "asc" },
         });
         res.json(users);
     }
@@ -47,6 +47,13 @@ exports.getUserById = getUserById;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username } = req.body;
+        const existedUser = yield prisma.user.findUnique({
+            where: { username },
+        });
+        if (existedUser) {
+            res.status(400).json({ message: "User already exists" });
+            return;
+        }
         const user = yield prisma.user.create({ data: { username } });
         res.status(201).json(user);
     }

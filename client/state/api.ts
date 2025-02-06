@@ -3,7 +3,8 @@ import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
 export interface User {
   user_id?: number;
-  username: string;
+  username?: string;
+  message?:string;
 }
 
 

@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const getUsers = async (req: Request, res: Response): Promise<void> => {
   try {
     const users = await prisma.user.findMany({
-      orderBy: { username: "asc" },
+      orderBy: { user_id: "asc" },
     });
     res.json(users);
   } catch (error: any) {
@@ -34,6 +34,13 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
 export const createUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { username } = req.body;
+    const existedUser = await prisma.user.findUnique({
+      where: { username },
+    })
+    if (existedUser) {
+      res.status(400).json({ message: "User already exists" });
+      return;
+    }
     const user = await prisma.user.create({ data: { username } });
     res.status(201).json(user);
   } catch (error: any) {
