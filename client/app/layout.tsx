@@ -1,5 +1,5 @@
 import '@mantine/core/styles.css';
-
+import StoreProvider from './redux';
 import React from 'react';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { theme } from '../theme';
@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
+        <StoreProvider>
         <MantineProvider theme={theme}>{children}</MantineProvider>
+        </StoreProvider>
       </body>
     </html>
   );
