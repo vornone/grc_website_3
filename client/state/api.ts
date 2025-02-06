@@ -27,9 +27,18 @@ export const api = createApi({
       query: () => "users",
       providesTags: ["Users"],
     }),
+    addUser: build.mutation<User, User>({
+      query: (user) => ({
+        url: "users",
+        method: "POST",
+        body: user,
+      }),
+      invalidatesTags: ["Users"],
+    })
   }),
 });
 
 export const {
   useGetUsersQuery,
+  useAddUserMutation
 } = api;
