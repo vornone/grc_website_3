@@ -3,8 +3,7 @@ import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
 export interface User {
   user_id?: number;
-  username?: string;
-  message?:string;
+  username: string;
 }
 
 
@@ -30,7 +29,7 @@ export const api = createApi({
     }),
     addUser: build.mutation<User, User>({
       query: (user) => ({
-        url: "users",
+        url: "users/create",
         method: "POST",
         body: user,
       }),

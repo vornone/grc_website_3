@@ -3,7 +3,6 @@
 import React from "react";
 import { useGetUsersQuery, useAddUserMutation } from "@/state/api";
 import { Button, Center, Input, List, Table, Stack, Flex} from "@mantine/core";
-import { ToastContainer } from "react-toastify";
 const page = () => {
   const {data:users, isLoading, isError}=useGetUsersQuery();
   const [addUser, { data: addUserData, isLoading:addUserLoading, isError:addUserError, isSuccess }] = useAddUserMutation();
@@ -14,23 +13,17 @@ const page = () => {
       <Table.Td>{user.username}</Table.Td>
       </Table.Tr>
   ))
-  const handleAddUser = () => {
-    addUser({ username });
-  }
   return (
     <>
-    <ToastContainer />
-    <Center  m={"auto"} h={"100dvh"}>
+    <Center bd={"1px solid red"} m={"auto"} h={"100dvh"}>
       <Stack  w={"50%"}>
         <Flex gap={"md"} >
-      <Input.Wrapper error={addUserError && username === ""}>
     <Input
       error={addUserError}
       value={username}
       type="text"
       placeholder="username"
       onChange={(e) => setUsername(e.target.value)}></Input>
-      </Input.Wrapper>
     <Button
       disabled={username === ""}
       onClick={() => {
