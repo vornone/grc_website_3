@@ -15,7 +15,7 @@ const page = () => {
   ))
   return (
     <>
-    <Center bd={"1px solid red"} m={"auto"} h={"100dvh"}>
+    <Center  m={"auto"} h={"100dvh"}>
       <Stack  w={"50%"}>
         <Flex gap={"md"} >
     <Input
