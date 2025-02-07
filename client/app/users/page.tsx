@@ -36,7 +36,6 @@ const page = () => {
         <Table.Tr>
           <Table.Th>ID</Table.Th>
           <Table.Th>Username</Table.Th>
-
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>
